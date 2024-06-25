@@ -1,0 +1,2 @@
+cp "$PROFILES_DIRECTORY/$PROFILE/Assets/Bin/"* "$HOME/Bin/"
+
