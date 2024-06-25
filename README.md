@@ -45,7 +45,8 @@ In the case that a stage fails and the script exits, it is sometimes possible to
 	- `setupVirtualization`
 	- `substituteElements`
 	- `terminate`
-	Each of these fields correspond to an action described in Stage 3 of the Stages section. Setting a field to `false` will mark its corresponding action as incomplete, and setting a field to `true` will mark its corresponding action as complete. Running the command `~/Files/ConfigurationUser.sh` will run incomplete actions in the order described in Stage 3 of the Stages section.
+	
+Each of these fields correspond to an action described in Stage 3 of the Stages section. Setting a field to `false` will mark its corresponding action as incomplete, and setting a field to `true` will mark its corresponding action as complete. Running the command `~/Files/ConfigurationUser.sh` will run incomplete actions in the order described in Stage 3 of the Stages section.
 ## Stages
 There are three stages to the Arch installation.
 ### Stage 1: The installation
@@ -75,6 +76,7 @@ During this stage, the user accounts made in Stage 2 will be configured. This st
 - Install and setup virtualization (`setupVirtualization`)
 - \*Edit user script templates to match the user configuration (`substituteElements`)
 - Delete this script (`terminate`)
+
 The actions marked with an asterisk (\*) can be configured with a profile to run additional tasks.
 ## Profiles
 Profiles can be made to run additional setup that is specific to a device. For example, a laptop will need the `sof-firmware` package installed to run onboard audio while a VM may instead need the `spice-vdagent` package. A profile can be created by making a folder named with the profile name in the `Profiles` directory of the installation script files. Each profile *must* contain the following scripts (although the scripts may contain nothing if no additional installation or configuration is necessary.) Each script must complete its own roles, which are shown below.
