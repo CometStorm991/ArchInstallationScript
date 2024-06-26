@@ -16,12 +16,16 @@ cp Scripts/RunInstallation.sh /root/
 chmod +x /root/RunInstallation.sh
 /root/RunInstallation.sh
 ```
+- The computer will reboot when Stage 1 completes.
 ### Stage 2
+- Once the computer boots, log in as root using the root password used in Stage 1.
 - Run the following command.
 ```
 /root/Files/ConfigurationRoot.sh
 ```
+- The computer will reboot when Stage 2 completes.
 ### Stage 3
+- Once the computer boots, log in as a user that was made in Stage 2.
 - Run the following command. The computer will reboot multiple times. Repeat the command after every reboot until the shell throws an error (when the script has finished and deleted itself)
 ```
 ~/Files/ConfigurationUser.sh
@@ -96,3 +100,4 @@ Profiles can be made to run additional setup that is specific to a device. For e
 - Install GHCup and Rustup in Stage 3
 - Install IntelliJ IDEs in Stage 3
 - Install QT libraries in Stage 3
+
