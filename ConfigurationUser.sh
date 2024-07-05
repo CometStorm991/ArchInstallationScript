@@ -426,11 +426,6 @@ function setupApplications() {
             yay -S --needed kitty firefox flameshot obs-studio kdenlive krita ktorrent okular vlc dolphin hwloc breeze breeze-gtk qt6ct && \
             git clone https://github.com/ShadowStar019/KittySS019.git "$HOME/.config/kitty/" && \
             git clone https://github.com/ShadowStar019/NeovimSS019.git "$HOME/.config/nvim/" && \
-            mkdir -p "$HOME/.config/" && \
-            mkdir -p "$HOME/.config/gtk-3.0/" && \
-            cp "$ASSETS_DIRECTORY/settings.ini" "$HOME/.config/gtk-3.0/" && \
-            mkdir -p "$HOME/.config/qt6ct/" && \
-            cp "$ASSETS_DIRECTORY/qt6ct.conf" "$HOME/.config/qt6ct/" && \
             mkdir -p "$HOME/Stuff/" && \
             mkdir -p "$HOME/Stuff/FirefoxResources/" && \
             git clone https://github.com/ShadowStar019/FirefoxSS019.git "$HOME/Stuff/FirefoxResources/" && \
@@ -440,6 +435,35 @@ function setupApplications() {
                 )
             then
                 errorMessage "Installing applications failed."
+    fi
+
+    echo "Enable dark theme?"
+    select choice in "No" "Yes"
+    do
+        case $choice in
+            "No")
+                enableDarkTheme=false
+                break
+                ;;
+            "Yes")
+                enableDarkTheme=true
+                break
+                ;;
+        esac
+    done
+
+    if $enableDarkTheme
+    then
+        if ! (
+            mkdir -p "$HOME/.config/" && \
+                mkdir -p "$HOME/.config/gtk-3.0/" && \
+                cp "$ASSETS_DIRECTORY/settings.ini" "$HOME/.config/gtk-3.0/" && \
+                mkdir -p "$HOME/.config/qt6ct/" && \
+                cp "$ASSETS_DIRECTORY/qt6ct.conf" "$HOME/.config/qt6ct/"
+            )
+        then
+            errorMessage "Enabling dark theme failed."
+        fi
     fi
 
     setAction "$action" true
