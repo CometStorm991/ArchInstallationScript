@@ -10,6 +10,8 @@ CONFIG_USER="$U_U_FILES_PATH/configUser.txt"
 HAS_PROFILE=$(cat "$U_U_FILES_PATH/Information/HasProfile.txt")
 PROFILE=$(cat "$U_U_FILES_PATH/Information/Profile.txt")
 
+PROFILE_ASSETS_DIRECTORY="$PROFILES_DIRECTORY/$PROFILE/Assets"
+
 USER_NAME=$(whoami)
 
 function main() {
@@ -335,9 +337,7 @@ function setupI3() {
             git clone https://github.com/ShadowStar019/i3wmSS019.git "$HOME/.config/i3/" && \
             git clone https://github.com/ShadowStar019/PolybarSS019.git "$HOME/.config/polybar/" && \
             mkdir -p "$HOME/State/" && \
-            mkdir -p "$HOME/Stuff/" && \
-            mkdir -p "$HOME/Stuff/Wallpapers/" && \
-            cp "$ASSETS_DIRECTORY/Wallpaper0.png" "$HOME/Stuff/Wallpapers/"
+            mkdir -p "$HOME/Stuff/"
         )
     then
         errorMessage "Installing I3 failed."
@@ -435,10 +435,11 @@ function setupApplications() {
             mkdir -p "$HOME/Stuff/FirefoxResources/" && \
             git clone https://github.com/ShadowStar019/FirefoxSS019.git "$HOME/Stuff/FirefoxResources/" && \
             cp "$HOME/Stuff/FirefoxResources/ResetFirefox.sh" "$HOME/Bin/" && \
-            "$HOME/Bin/ResetFirefox.sh"
-        )
-    then
-        errorMessage "Installing applications failed."
+            sed -i -- "s/<%userName%>/$USER_NAME/g" "$HOME/Bin/ResetFirefox.sh"
+                    "$HOME/Bin/ResetFirefox.sh"
+                )
+            then
+                errorMessage "Installing applications failed."
     fi
 
     setAction "$action" true

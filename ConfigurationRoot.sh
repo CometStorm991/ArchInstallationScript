@@ -71,7 +71,7 @@ function addUser() {
     chown -R "$userName:$userName" "$U_R_FILES_PATH/"
 
     echo "$userName ALL=(ALL:ALL) ALL" | EDITOR="tee -a" visudo 
-    # echo "$userName ALL=(ALL) NOPASSWD: ALL" | EDITOR="tee -a" visudo 
+    usermod -aG video $userName
 }
 
 function rebootComputer() {
