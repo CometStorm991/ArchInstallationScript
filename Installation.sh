@@ -146,7 +146,7 @@ function setupDisk() {
     read -r bootPartition
 
 
-    if (mkfs.ext4 "$rootPartition" && mkfs.fat -F 32 "$bootPartition") 
+    if ! (mkfs.ext4 "$rootPartition" && mkfs.fat -F 32 "$bootPartition") 
     then
         errorMessage "Formatting failed."
     fi

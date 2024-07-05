@@ -11,7 +11,7 @@ Two removable drives.
 - Run `lsblk` to see available drives and locate the partition on Drive 2 that contains the installation script files. The partition will be in the format `/dev/___#` where `___` is the name of the disk and `#` is the partition number.
 - Run the following commands, replacing `<Drive 2 Partition>` with the located partition. 
 ```
-mkdir --mount <Drive 2 Partition> /root/Scripts/
+mount --mkdir <Drive 2 Partition> /root/Scripts/
 cp Scripts/RunInstallation.sh /root/
 chmod +x /root/RunInstallation.sh
 /root/RunInstallation.sh
